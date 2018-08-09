@@ -1,16 +1,12 @@
 {
   "name": "shadow-modal",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A bootstrap 4 modal inside a customElements' shadow dom",
   "main": "build/ShadowModal.js",
   "scripts": {
     "build": "tsc && gulp"
   },
   "author": "m7r-227",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/m7r-227/shadow-modal.git"
-  },
   "license": "MIT",
   "devDependencies": {
     "browserify": "^16.2.2",

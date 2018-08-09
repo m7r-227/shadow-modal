@@ -5,10 +5,10 @@ const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 
 gulp.task('default', function () {
-    return browserify({ entries: ['./src/export.js'], standalone: 'ShadowModal' })
+    return browserify({ entries: ['./src/index.ts'], standalone: 'ShadowModal' })
         .plugin(tsify)
         .bundle()
-        .pipe(source('ShadowModal.js'))
+        .pipe(source('index.js'))
         .pipe(buffer())
         .pipe(gulp.dest('build'));
 });

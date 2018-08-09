@@ -1,5 +1,5 @@
-import ShadowModal from './ShadowModal';
-export default interface IOptions {
+import IShadowModal from '../IShadowModal';
+export default interface IBulmaOptions {
     title?: string;
     content?: string | HTMLElement;
     appendTo?: string;
@@ -10,8 +10,8 @@ export default interface IOptions {
     hasFooter?: boolean;
     style?: string;
     footerBtns?: Array<{
-        text: string;
-        classNames: string | string[];
-        click: (this: ShadowModal, ev: MouseEvent) => void;
+        text: string,
+        classNames: string | string[],
+        click: (this: IShadowModal, ev: MouseEvent) => void,
     }>;
 }
