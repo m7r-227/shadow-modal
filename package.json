@@ -7,6 +7,10 @@
     "build": "tsc && gulp"
   },
   "author": "m7r-227",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m7r-227/shadow-modal.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "browserify": "^16.2.2",
