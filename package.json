@@ -1,0 +1,21 @@
+{
+  "name": "shadow-modal",
+  "version": "1.0.0",
+  "description": "A bootstrap 4 modal inside a customElements' shadow dom",
+  "main": "build/ShadowModal.js",
+  "scripts": {
+    "build": "tsc && gulp"
+  },
+  "author": "m7r-227",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^16.2.2",
+    "gulp": "^4.0.0",
+    "gulp-uglify-es": "^1.0.4",
+    "tsify": "^4.0.0",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}
