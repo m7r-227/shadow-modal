@@ -17,6 +17,5 @@ declare abstract class AbstractShadowModal extends HTMLElement implements IShado
     removeFooterBtn(button: HTMLButtonElement): void;
     abstract hasHeader: boolean;
     abstract hasFooter: boolean;
-    destroy(): void;
 }
 export default AbstractShadowModal;

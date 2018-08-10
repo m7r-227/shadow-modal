@@ -2,11 +2,11 @@ import AbstractShadowModal from '../AbstractShadowModal';
 import IBulmaOptions from './IBulmaOptions';
 declare class Bulma extends AbstractShadowModal {
     modal: HTMLDivElement;
-    backdrop: HTMLDivElement;
-    header: HTMLDivElement;
-    modalTitle: HTMLDivElement;
-    body: HTMLDivElement;
-    footer: HTMLDivElement;
+    background: HTMLDivElement;
+    header: HTMLElement;
+    modalTitle: HTMLParagraphElement;
+    body: HTMLElement;
+    footer: HTMLElement;
     private hideClasses;
     constructor();
     open(): void;

@@ -9,11 +9,9 @@ class AbstractShadowModal extends HTMLElement {
         this.modalTitle.textContent = text;
     }
     setContent(content) {
-        // remove body content
         while (this.body.firstChild) {
             this.body.removeChild(this.body.firstChild);
         }
-        // append content to the modal body
         if (content instanceof HTMLElement) {
             this.body.appendChild(content);
         }
@@ -63,12 +61,6 @@ class AbstractShadowModal extends HTMLElement {
             if (parent !== null && this.footer.isSameNode(parent)) {
                 this.footer.removeChild(button);
             }
-        }
-    }
-    destroy() {
-        const parent = this.parentNode;
-        if (parent !== null) {
-            parent.removeChild(this);
         }
     }
 }

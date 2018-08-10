@@ -24,7 +24,7 @@ class Bulma extends AbstractShadowModal_1.default {
             </div>
         `;
         this.modal = Array.prototype.filter.call(template.content.childNodes, (n) => n instanceof HTMLElement)[0];
-        this.backdrop = this.modal.querySelector('.modal-background');
+        this.background = this.modal.querySelector('.modal-background');
         this.header = this.modal.querySelector('.modal-card-head');
         this.modalTitle = this.header.querySelector('.modal-card-title');
         this.body = this.modal.querySelector('.modal-card-body');
@@ -32,7 +32,7 @@ class Bulma extends AbstractShadowModal_1.default {
         this.modal.addEventListener('click', (e) => {
             const target = e.target;
             if (target instanceof HTMLElement) {
-                if (this.backdrop.isSameNode(target)) {
+                if (this.background.isSameNode(target)) {
                     this.close();
                 }
                 else if (target.dataset.close !== undefined) {

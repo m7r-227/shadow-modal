@@ -3,11 +3,11 @@ import IBulmaOptions from './IBulmaOptions';
 
 class Bulma extends AbstractShadowModal {
     public modal: HTMLDivElement;
-    public backdrop: HTMLDivElement;
-    public header: HTMLDivElement;
-    public modalTitle: HTMLDivElement;
-    public body: HTMLDivElement;
-    public footer: HTMLDivElement;
+    public background: HTMLDivElement;
+    public header: HTMLElement;
+    public modalTitle: HTMLParagraphElement;
+    public body: HTMLElement;
+    public footer: HTMLElement;
 
     private hideClasses: string[];
 
@@ -38,16 +38,16 @@ class Bulma extends AbstractShadowModal {
 
         this.modal = Array.prototype.filter.call(template.content.childNodes, (n: Node) => n instanceof HTMLElement)[0];
 
-        this.backdrop = this.modal.querySelector('.modal-background') as HTMLDivElement;
-        this.header = this.modal.querySelector('.modal-card-head') as HTMLDivElement;
-        this.modalTitle = this.header.querySelector('.modal-card-title') as HTMLDivElement;
-        this.body = this.modal.querySelector('.modal-card-body') as HTMLDivElement;
-        this.footer = this.modal.querySelector('.modal-card-foot') as HTMLDivElement;
+        this.background = this.modal.querySelector('.modal-background') as HTMLDivElement;
+        this.header = this.modal.querySelector('.modal-card-head') as HTMLElement;
+        this.modalTitle = this.header.querySelector('.modal-card-title') as HTMLParagraphElement;
+        this.body = this.modal.querySelector('.modal-card-body') as HTMLElement;
+        this.footer = this.modal.querySelector('.modal-card-foot') as HTMLElement;
 
         this.modal.addEventListener('click', (e) => {
             const target = e.target;
             if (target instanceof HTMLElement) {
-                if (this.backdrop.isSameNode(target)) {
+                if (this.background.isSameNode(target)) {
                     this.close();
                 } else if (target.dataset.close !== undefined) {
                     this.close();

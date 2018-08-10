@@ -23,12 +23,10 @@ abstract class AbstractShadowModal extends HTMLElement implements IShadowModal {
     }
 
     public setContent(content: string | HTMLElement): HTMLElement | null {
-        // remove body content
         while (this.body.firstChild) {
             this.body.removeChild(this.body.firstChild);
         }
 
-        // append content to the modal body
         if (content instanceof HTMLElement) {
             this.body.appendChild(content);
         } else if (typeof content === 'string') {
@@ -90,13 +88,6 @@ abstract class AbstractShadowModal extends HTMLElement implements IShadowModal {
     public abstract set hasFooter(val: boolean);
 
     public abstract get hasFooter();
-
-    public destroy() {
-        const parent = this.parentNode;
-        if (parent !== null) {
-            parent.removeChild(this);
-        }
-    }
 }
 
 export default AbstractShadowModal;

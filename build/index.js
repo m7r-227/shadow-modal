@@ -10,11 +10,9 @@ class AbstractShadowModal extends HTMLElement {
         this.modalTitle.textContent = text;
     }
     setContent(content) {
-        // remove body content
         while (this.body.firstChild) {
             this.body.removeChild(this.body.firstChild);
         }
-        // append content to the modal body
         if (content instanceof HTMLElement) {
             this.body.appendChild(content);
         }
@@ -66,12 +64,6 @@ class AbstractShadowModal extends HTMLElement {
             }
         }
     }
-    destroy() {
-        const parent = this.parentNode;
-        if (parent !== null) {
-            parent.removeChild(this);
-        }
-    }
 }
 exports.default = AbstractShadowModal;
 
@@ -110,14 +102,12 @@ class Bootstrap4 extends AbstractShadowModal_1.default {
                 </div>
             </div>
         `;
-        // get the first HTMLElement of the template content
         this.modal = Array.prototype.filter.call(template.content.childNodes, (n) => n instanceof HTMLElement)[0];
         this.dialog = this.modal.querySelector('.modal-dialog');
         this.header = this.modal.querySelector('.modal-header');
         this.modalTitle = this.header.querySelector('.modal-title');
         this.body = this.modal.querySelector('.modal-body');
         this.footer = this.modal.querySelector('.modal-footer');
-        // Close the modal when clicking outside of modal-dialog
         this.modal.addEventListener('click', (e) => {
             const target = e.target;
             if (target instanceof HTMLElement) {
@@ -259,7 +249,7 @@ class Bulma extends AbstractShadowModal_1.default {
             </div>
         `;
         this.modal = Array.prototype.filter.call(template.content.childNodes, (n) => n instanceof HTMLElement)[0];
-        this.backdrop = this.modal.querySelector('.modal-background');
+        this.background = this.modal.querySelector('.modal-background');
         this.header = this.modal.querySelector('.modal-card-head');
         this.modalTitle = this.header.querySelector('.modal-card-title');
         this.body = this.modal.querySelector('.modal-card-body');
@@ -267,7 +257,7 @@ class Bulma extends AbstractShadowModal_1.default {
         this.modal.addEventListener('click', (e) => {
             const target = e.target;
             if (target instanceof HTMLElement) {
-                if (this.backdrop.isSameNode(target)) {
+                if (this.background.isSameNode(target)) {
                     this.close();
                 }
                 else if (target.dataset.close !== undefined) {

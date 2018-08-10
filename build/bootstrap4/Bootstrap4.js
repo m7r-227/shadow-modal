@@ -32,14 +32,12 @@ class Bootstrap4 extends AbstractShadowModal_1.default {
                 </div>
             </div>
         `;
-        // get the first HTMLElement of the template content
         this.modal = Array.prototype.filter.call(template.content.childNodes, (n) => n instanceof HTMLElement)[0];
         this.dialog = this.modal.querySelector('.modal-dialog');
         this.header = this.modal.querySelector('.modal-header');
         this.modalTitle = this.header.querySelector('.modal-title');
         this.body = this.modal.querySelector('.modal-body');
         this.footer = this.modal.querySelector('.modal-footer');
-        // Close the modal when clicking outside of modal-dialog
         this.modal.addEventListener('click', (e) => {
             const target = e.target;
             if (target instanceof HTMLElement) {

@@ -13,5 +13,4 @@ export default interface IShadowModal {
     removeFooterBtn(button: HTMLButtonElement): void;
     hasHeader: boolean;
     hasFooter: boolean;
-    destroy(): void;
 }
