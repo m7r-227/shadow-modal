@@ -1,6 +1,6 @@
 {
   "name": "shadow-modal",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A bootstrap 4 modal inside a customElements' shadow dom",
   "main": "build/index.js",
   "scripts": {
