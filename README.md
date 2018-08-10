@@ -8,18 +8,18 @@ When you want to display some data from a userscript it's often easier to just u
 
 `$ npm install shadow-modal`
 
-then
-
-`<script src="ShadowModal.js"></script>`
+`import * as ShadowModal from 'shadow-modal;'`
 
 or
 
-`const ShadowModal = require('shadow-modal');`
+`const { Bulma } = require('shadow-modal');`
 
 ## Examples
 
+See the examples folder
+
 ```javascript
-const modal = ShadowModal.create({
+const modal = ShadowModal.Bootstrap4.create({
     title: 'a title',
     content: '<h3>Some content</h3>',
     appendTo: 'body',
@@ -66,31 +66,23 @@ modal.open();
 or
 
 ```javascript
-const modal = document.createElement('shadow-modal');
+const modal = Bulma.create();
 let style = modal.addStyle('.custom-color { background-color: #34495e; }');
 
 modal.setTitle('A title');
 modal.setContent('<h3>Some content</h3>');
 
-modal.isLarge = true;
-modal.isVerticallyCentered = true;
 modal.hasHeader = false;
 
-modal.addFooterBtn('Toogle header', 'btn btn-primary rounded-0', function () {
+modal.addFooterBtn('Toogle header', 'button custom-color has-text-light', function () {
     this.hasHeader = !this.hasHeader;
 });
 
-modal.addFooterBtn('Toggle size', 'btn custom-color text-light rounded-0', function () {
-    if (this.isSmall) {
-        this.isSmall = false;
-    } else if (this.isLarge) {
-        this.isSmall = true;
-    } else {
-        this.isLarge = true;
-    }
+modal.addFooterBtn('Remove style', 'button is-link', function () {
+    this.removeStyle(style);
 });
 
-let button = modal.addFooterBtn('Remove me', 'btn btn-danger rounded-0', function () {
+let button = modal.addFooterBtn('Remove me', 'button is-danger', function () {
     this.removeFooterBtn(button);
 });
 

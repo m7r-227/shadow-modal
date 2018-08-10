@@ -1,5 +1,5 @@
-import ShadowModal from './ShadowModal';
-export default interface IOptions {
+import IShadowModal from '../IShadowModal';
+export default interface IBoostrap4Options {
     title?: string;
     content?: string | HTMLElement;
     appendTo?: string;
@@ -11,7 +11,7 @@ export default interface IOptions {
     style?: string;
     footerBtns?: Array<{
         text: string,
-        classNames: string | string[],
-        click: (this: ShadowModal, ev: MouseEvent) => void,
+        classNames?: string | string[],
+        click?: (this: IShadowModal, ev: MouseEvent) => void,
     }>;
 }

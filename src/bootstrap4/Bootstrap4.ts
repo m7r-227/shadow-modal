@@ -1,5 +1,7 @@
-import IOptions from './IOptions';
-class ShadowModal extends HTMLElement {
+import AbstractShadowModal from '../AbstractShadowModal';
+import IBoostrap4Options from './IBoostrap4Options';
+
+class Bootstrap4 extends AbstractShadowModal {
     public backdrop: HTMLDivElement;
     public modal: HTMLDivElement;
     public dialog: HTMLDivElement;
@@ -8,11 +10,8 @@ class ShadowModal extends HTMLElement {
     public body: HTMLDivElement;
     public footer: HTMLDivElement;
 
-    private shadow: ShadowRoot;
-
     constructor() {
         super();
-        this.shadow = this.attachShadow({ mode: 'open' });
 
         const bootstrap = document.createElement('link');
         bootstrap.setAttribute('rel', 'stylesheet');
@@ -45,7 +44,6 @@ class ShadowModal extends HTMLElement {
             </div>
         `;
 
-        // get the first HTMLElement of the template content
         this.modal = Array.prototype.filter.call(template.content.childNodes, (n: Node) => n instanceof HTMLElement)[0];
 
         this.dialog = this.modal.querySelector('.modal-dialog') as HTMLDivElement;
@@ -54,7 +52,6 @@ class ShadowModal extends HTMLElement {
         this.body = this.modal.querySelector('.modal-body') as HTMLDivElement;
         this.footer = this.modal.querySelector('.modal-footer') as HTMLDivElement;
 
-        // Close the modal when clicking outside of modal-dialog
         this.modal.addEventListener('click', (e) => {
             const target = e.target;
             if (target instanceof HTMLElement) {
@@ -77,71 +74,6 @@ class ShadowModal extends HTMLElement {
     public close() {
         this.modal.classList.remove('show', 'd-block');
         this.backdrop.classList.add('d-none');
-    }
-
-    public setTitle(text: string) {
-        this.modalTitle.textContent = text;
-    }
-
-    public setContent(content: string | HTMLElement): HTMLElement | null {
-        // remove body content
-        while (this.body.firstChild) {
-            this.body.removeChild(this.body.firstChild);
-        }
-
-        // append content to the modal body
-        if (content instanceof HTMLElement) {
-            this.body.appendChild(content);
-        } else if (typeof content === 'string') {
-            this.body.innerHTML = content;
-        }
-        return this.body.firstChild;
-    }
-
-    public addStyle(rules: string) {
-        const style = document.createElement('style');
-        style.setAttribute('type', 'text/css');
-        style.appendChild(document.createTextNode(rules));
-        this.shadow.appendChild(style);
-        return style;
-    }
-
-    public removeStyle(style: HTMLStyleElement) {
-        if (style instanceof HTMLStyleElement) {
-            const parent = style.parentNode;
-            if (parent !== null && this.shadow.isSameNode(parent)) {
-                this.shadow.removeChild(style);
-            }
-        }
-    }
-
-    public addFooterBtn(text: string, classNames?: string | string[], callback?: (this: ShadowModal, ev: MouseEvent) => void) {
-        const button = document.createElement('button');
-        button.textContent = text;
-        if (classNames) {
-            if (typeof classNames === 'string') {
-                classNames = classNames.split(' ');
-            } else if (!Array.isArray(classNames) || classNames.some((c) => typeof c !== 'string')) {
-                throw new Error('classNames must be of type string or string[]');
-            }
-            if (classNames.length > 0) {
-                button.classList.add(...classNames);
-            }
-        }
-        if (typeof callback === 'function') {
-            button.addEventListener('click', callback.bind(this));
-        }
-        this.footer.appendChild(button);
-        return button;
-    }
-
-    public removeFooterBtn(button: HTMLButtonElement) {
-        if (button instanceof HTMLButtonElement) {
-            const parent = button.parentNode;
-            if (parent !== null && this.footer.isSameNode(parent)) {
-                this.footer.removeChild(button);
-            }
-        }
     }
 
     public set isLarge(val: boolean) {
@@ -194,7 +126,7 @@ class ShadowModal extends HTMLElement {
         return !this.header.classList.contains('d-none');
     }
 
-    public set hasFooter(val: boolean) {
+    public set hasFooter(val) {
         if (val) {
             this.footer.classList.remove('d-none');
         } else {
@@ -206,15 +138,8 @@ class ShadowModal extends HTMLElement {
         return !this.footer.classList.contains('d-none');
     }
 
-    public destroy() {
-        const parent = this.parentNode;
-        if (parent !== null) {
-            parent.removeChild(this);
-        }
-    }
-
-    public static create(o: IOptions) {
-        const modal = document.createElement('shadow-modal') as ShadowModal;
+    public static create(o?: IBoostrap4Options) {
+        const modal = document.createElement('bootstrap4-modal') as Bootstrap4;
         if (!o) {
             return modal;
         }
@@ -249,6 +174,6 @@ class ShadowModal extends HTMLElement {
     }
 }
 
-customElements.define('shadow-modal', ShadowModal);
+customElements.define('bootstrap4-modal', Bootstrap4);
 
-export default ShadowModal;
+export default Bootstrap4;

@@ -1,10 +1,9 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.ShadowModal = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class ShadowModal extends HTMLElement {
+const AbstractShadowModal_1 = require("../AbstractShadowModal");
+class Bootstrap4 extends AbstractShadowModal_1.default {
     constructor() {
         super();
-        this.shadow = this.attachShadow({ mode: 'open' });
         const bootstrap = document.createElement('link');
         bootstrap.setAttribute('rel', 'stylesheet');
         bootstrap.setAttribute('href', 'https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
@@ -33,14 +32,12 @@ class ShadowModal extends HTMLElement {
                 </div>
             </div>
         `;
-        // get the first HTMLElement of the template content
         this.modal = Array.prototype.filter.call(template.content.childNodes, (n) => n instanceof HTMLElement)[0];
         this.dialog = this.modal.querySelector('.modal-dialog');
         this.header = this.modal.querySelector('.modal-header');
         this.modalTitle = this.header.querySelector('.modal-title');
         this.body = this.modal.querySelector('.modal-body');
         this.footer = this.modal.querySelector('.modal-footer');
-        // Close the modal when clicking outside of modal-dialog
         this.modal.addEventListener('click', (e) => {
             const target = e.target;
             if (target instanceof HTMLElement) {
@@ -61,66 +58,6 @@ class ShadowModal extends HTMLElement {
     close() {
         this.modal.classList.remove('show', 'd-block');
         this.backdrop.classList.add('d-none');
-    }
-    setTitle(text) {
-        this.modalTitle.textContent = text;
-    }
-    setContent(content) {
-        // remove body content
-        while (this.body.firstChild) {
-            this.body.removeChild(this.body.firstChild);
-        }
-        // append content to the modal body
-        if (content instanceof HTMLElement) {
-            this.body.appendChild(content);
-        }
-        else if (typeof content === 'string') {
-            this.body.innerHTML = content;
-        }
-        return this.body.firstChild;
-    }
-    addStyle(rules) {
-        const style = document.createElement('style');
-        style.setAttribute('type', 'text/css');
-        style.appendChild(document.createTextNode(rules));
-        this.shadow.appendChild(style);
-        return style;
-    }
-    removeStyle(style) {
-        if (style instanceof HTMLStyleElement) {
-            const parent = style.parentNode;
-            if (parent !== null && this.shadow.isSameNode(parent)) {
-                this.shadow.removeChild(style);
-            }
-        }
-    }
-    addFooterBtn(text, classNames, callback) {
-        const button = document.createElement('button');
-        button.textContent = text;
-        if (classNames) {
-            if (typeof classNames === 'string') {
-                classNames = classNames.split(' ');
-            }
-            else if (!Array.isArray(classNames) || classNames.some((c) => typeof c !== 'string')) {
-                throw new Error('classNames must be of type string or string[]');
-            }
-            if (classNames.length > 0) {
-                button.classList.add(...classNames);
-            }
-        }
-        if (typeof callback === 'function') {
-            button.addEventListener('click', callback.bind(this));
-        }
-        this.footer.appendChild(button);
-        return button;
-    }
-    removeFooterBtn(button) {
-        if (button instanceof HTMLButtonElement) {
-            const parent = button.parentNode;
-            if (parent !== null && this.footer.isSameNode(parent)) {
-                this.footer.removeChild(button);
-            }
-        }
     }
     set isLarge(val) {
         if (val) {
@@ -179,14 +116,8 @@ class ShadowModal extends HTMLElement {
     get hasFooter() {
         return !this.footer.classList.contains('d-none');
     }
-    destroy() {
-        const parent = this.parentNode;
-        if (parent !== null) {
-            parent.removeChild(this);
-        }
-    }
     static create(o) {
-        const modal = document.createElement('shadow-modal');
+        const modal = document.createElement('bootstrap4-modal');
         if (!o) {
             return modal;
         }
@@ -218,14 +149,5 @@ class ShadowModal extends HTMLElement {
         return modal;
     }
 }
-customElements.define('shadow-modal', ShadowModal);
-exports.default = ShadowModal;
-
-},{}],2:[function(require,module,exports){
-/*  It's the only way i found to directly export a typescript class to be used like :
-    const ShadowModal = require('shadow-modal') ;
-    instead of :
-    const ShadowModal = require('shadow-modal').default; */
-module.exports = require('./ShadowModal').default;
-},{"./ShadowModal":1}]},{},[2])(2)
-});
+customElements.define('bootstrap4-modal', Bootstrap4);
+exports.default = Bootstrap4;
