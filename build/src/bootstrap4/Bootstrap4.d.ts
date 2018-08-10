@@ -16,6 +16,6 @@ declare class Bootstrap4 extends AbstractShadowModal {
     isVerticallyCentered: boolean;
     hasHeader: boolean;
     hasFooter: any;
-    static create(o?: IBoostrap4Options): Bootstrap4;
+    static create(o: IBoostrap4Options): Bootstrap4;
 }
 export default Bootstrap4;

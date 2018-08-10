@@ -11,7 +11,7 @@ export default interface IBoostrap4Options {
     style?: string;
     footerBtns?: Array<{
         text: string,
-        classNames: string | string[],
-        click: (this: IShadowModal, ev: MouseEvent) => void,
+        classNames?: string | string[],
+        click?: (this: IShadowModal, ev: MouseEvent) => void,
     }>;
 }

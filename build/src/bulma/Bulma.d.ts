@@ -13,6 +13,6 @@ declare class Bulma extends AbstractShadowModal {
     close(): void;
     hasHeader: boolean;
     hasFooter: any;
-    static create(o?: IBulmaOptions): Bulma;
+    static create(o: IBulmaOptions): Bulma;
 }
 export default Bulma;

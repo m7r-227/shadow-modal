@@ -1,27 +1,16 @@
-import AbstractShadowModal from '../AbstractShadowModal';
-import IBoostrap4Options from './IBoostrap4Options';
-
-class Bootstrap4 extends AbstractShadowModal {
-    public backdrop: HTMLDivElement;
-    public modal: HTMLDivElement;
-    public dialog: HTMLDivElement;
-    public header: HTMLDivElement;
-    public modalTitle: HTMLDivElement;
-    public body: HTMLDivElement;
-    public footer: HTMLDivElement;
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const AbstractShadowModal_1 = require("../AbstractShadowModal");
+class Bootstrap4 extends AbstractShadowModal_1.default {
     constructor() {
         super();
-
         const bootstrap = document.createElement('link');
         bootstrap.setAttribute('rel', 'stylesheet');
         bootstrap.setAttribute('href', 'https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
         this.shadow.appendChild(bootstrap);
-
         this.backdrop = document.createElement('div');
         this.backdrop.classList.add('modal-backdrop', 'fade', 'show', 'd-none');
         this.shadow.appendChild(this.backdrop);
-
         const template = document.createElement('template');
         template.innerHTML = `
             <div class="modal fade">
@@ -43,103 +32,92 @@ class Bootstrap4 extends AbstractShadowModal {
                 </div>
             </div>
         `;
-
-        this.modal = Array.prototype.filter.call(template.content.childNodes, (n: Node) => n instanceof HTMLElement)[0];
-
-        this.dialog = this.modal.querySelector('.modal-dialog') as HTMLDivElement;
-        this.header = this.modal.querySelector('.modal-header') as HTMLDivElement;
-        this.modalTitle = this.header.querySelector('.modal-title') as HTMLDivElement;
-        this.body = this.modal.querySelector('.modal-body') as HTMLDivElement;
-        this.footer = this.modal.querySelector('.modal-footer') as HTMLDivElement;
-
+        this.modal = Array.prototype.filter.call(template.content.childNodes, (n) => n instanceof HTMLElement)[0];
+        this.dialog = this.modal.querySelector('.modal-dialog');
+        this.header = this.modal.querySelector('.modal-header');
+        this.modalTitle = this.header.querySelector('.modal-title');
+        this.body = this.modal.querySelector('.modal-body');
+        this.footer = this.modal.querySelector('.modal-footer');
         this.modal.addEventListener('click', (e) => {
             const target = e.target;
             if (target instanceof HTMLElement) {
                 if (this.modal.isSameNode(target)) {
                     this.close();
-                } else if (target.dataset.close !== undefined) {
+                }
+                else if (target.dataset.close !== undefined) {
                     this.close();
                 }
             }
         });
-
         this.shadow.appendChild(this.modal);
     }
-
-    public open() {
+    open() {
         this.modal.classList.add('show', 'd-block');
         this.backdrop.classList.remove('d-none');
     }
-
-    public close() {
+    close() {
         this.modal.classList.remove('show', 'd-block');
         this.backdrop.classList.add('d-none');
     }
-
-    public set isLarge(val: boolean) {
+    set isLarge(val) {
         if (val) {
             this.dialog.classList.remove('modal-sm');
             this.dialog.classList.add('modal-lg');
-        } else {
+        }
+        else {
             this.dialog.classList.remove('modal-lg');
         }
     }
-
-    public get isLarge() {
+    get isLarge() {
         return this.dialog.classList.contains('modal-lg');
     }
-
-    public set isSmall(val: boolean) {
+    set isSmall(val) {
         if (val) {
             this.dialog.classList.remove('modal-lg');
             this.dialog.classList.add('modal-sm');
-        } else {
+        }
+        else {
             this.dialog.classList.remove('modal-sm');
         }
     }
-
-    public get isSmall() {
+    get isSmall() {
         return this.dialog.classList.contains('modal-sm');
     }
-
-    public set isVerticallyCentered(val: boolean) {
+    set isVerticallyCentered(val) {
         if (val) {
             this.dialog.classList.add('modal-dialog-centered');
-        } else {
+        }
+        else {
             this.dialog.classList.remove('modal-dialog-centered');
         }
     }
-
-    public get isVerticallyCentered() {
+    get isVerticallyCentered() {
         return this.dialog.classList.contains('modal-dialog-centered');
     }
-
-    public set hasHeader(val: boolean) {
+    set hasHeader(val) {
         if (val) {
             this.header.classList.remove('d-none');
-        } else {
+        }
+        else {
             this.header.classList.add('d-none');
         }
     }
-
-    public get hasHeader() {
+    get hasHeader() {
         return !this.header.classList.contains('d-none');
     }
-
-    public set hasFooter(val) {
+    set hasFooter(val) {
         if (val) {
             this.footer.classList.remove('d-none');
-        } else {
+        }
+        else {
             this.footer.classList.add('d-none');
         }
     }
-
-    public get hasFooter() {
+    get hasFooter() {
         return !this.footer.classList.contains('d-none');
     }
-
-    public static create(o?: IBoostrap4Options) {
-        const modal = document.createElement('bootstrap4-modal') as Bootstrap4;
+    static create(o) {
+        const modal = document.createElement('bootstrap4-modal');
         if (!o) {
             return modal;
         }
@@ -157,13 +135,11 @@ class Bootstrap4 extends AbstractShadowModal {
         modal.isVerticallyCentered = o.isVerticallyCentered !== undefined ? o.isVerticallyCentered : false;
         modal.hasHeader = o.hasHeader !== undefined ? o.hasHeader : true;
         modal.hasFooter = o.hasFooter !== undefined ? o.hasFooter : true;
-
         if (o.footerBtns && o.footerBtns.length > 0) {
             o.footerBtns.forEach((fb) => {
                 modal.addFooterBtn(fb.text, fb.classNames, fb.click);
             });
         }
-
         if (o.appendTo) {
             const target = document.querySelector(o.appendTo);
             if (target !== null) {
@@ -173,7 +149,5 @@ class Bootstrap4 extends AbstractShadowModal {
         return modal;
     }
 }
-
 customElements.define('bootstrap4-modal', Bootstrap4);
-
-export default Bootstrap4;
+exports.default = Bootstrap4;
