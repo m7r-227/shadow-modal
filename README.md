@@ -8,15 +8,15 @@ When you want to display some data from a userscript it's often easier to just u
 
 `$ npm install shadow-modal`
 
-then
-
-`<script src="ShadowModal.js"></script>`
+`import * as ShadowModal from 'shadow-modal;'`
 
 or
 
-`const ShadowModal = require('shadow-modal');`
+`const { Bulma } = require('shadow-modal');`
 
 ## Examples
+
+See the examples folder
 
 ```javascript
 const modal = ShadowModal.Bootstrap4.create({
@@ -66,7 +66,7 @@ modal.open();
 or
 
 ```javascript
-const modal = document.createElement('bulma-modal');
+const modal = Bulma.create();
 let style = modal.addStyle('.custom-color { background-color: #34495e; }');
 
 modal.setTitle('A title');
