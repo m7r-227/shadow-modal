@@ -66,6 +66,7 @@ modal.open();
 or
 
 ```javascript
+// bulma
 const modal = Bulma.create();
 let style = modal.addStyle('.custom-color { background-color: #34495e; }');
 
@@ -83,6 +84,30 @@ modal.addFooterBtn('Remove style', 'button is-link', function () {
 });
 
 let button = modal.addFooterBtn('Remove me', 'button is-danger', function () {
+    this.removeFooterBtn(button);
+});
+
+document.body.appendChild(modal);
+modal.open();
+
+// uikit
+const modal = Uikit.create();
+let style = modal.addStyle('.custom-color { background-color: #34495e; }');
+
+modal.setTitle('A title');
+modal.setContent('<h3>Some content</h3>');
+
+modal.hasHeader = false;
+
+modal.addFooterBtn('Toogle header', 'uk-button uk-button-primary', function () {
+    this.hasHeader = !this.hasHeader;
+});
+
+modal.addFooterBtn('Remove style', 'uk-button custom-color', function () {
+    this.removeStyle(style);
+});
+
+let button = modal.addFooterBtn('Remove me', 'uk-button uk-button-danger', function () {
     this.removeFooterBtn(button);
 });
 
