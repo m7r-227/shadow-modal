@@ -1,7 +1,7 @@
 import AbstractShadowModal from '../AbstractShadowModal';
 import UikitOptions from './UikitOptions';
 
-class Bulma extends AbstractShadowModal {
+class Uikit extends AbstractShadowModal {
     public modal: HTMLDivElement;
     public header: HTMLDivElement;
     public modalTitle: HTMLHeadingElement;
@@ -13,14 +13,14 @@ class Bulma extends AbstractShadowModal {
 
         const uikit = document.createElement('link');
         uikit.setAttribute('rel', 'stylesheet');
-        uikit.setAttribute('href', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/css/uikit.min.css');
+        uikit.setAttribute('href', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.11/css/uikit.min.css');
         this.shadow.appendChild(uikit);
 
         const template = document.createElement('template');
         template.innerHTML = `
             <div class="uk-modal">
                 <div class="uk-modal-dialog">
-                    <button class="uk-modal-close-default uk-close uk-icon" type="button" data-close></button>
+                    <button class="uk-modal-close uk-close uk-icon" type="button" data-close></button>
                     <div class="uk-modal-header">
                         <h2 class="uk-modal-title"></h2>
                     </div>
@@ -88,7 +88,7 @@ class Bulma extends AbstractShadowModal {
     }
 
     public static create(o?: UikitOptions) {
-        const modal = document.createElement('uikit-modal') as Bulma;
+        const modal = document.createElement('uikit-modal') as Uikit;
         if (!o) {
             return modal;
         }
@@ -121,6 +121,6 @@ class Bulma extends AbstractShadowModal {
     }
 }
 
-customElements.define('uikit-modal', Bulma);
+customElements.define('uikit-modal', Uikit);
 
-export default Bulma;
+export default Uikit;

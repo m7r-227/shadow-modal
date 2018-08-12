@@ -5,7 +5,11 @@
   "main": "build/index.js",
   "scripts": {
     "build": "tsc",
-    "browser": "gulp"
+    "build-standalone": "gulp standalone"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m7r-227/shadow-modal.git"
   },
   "author": "m7r-227",
   "license": "MIT",

@@ -43,15 +43,6 @@ abstract class AbstractShadowModal extends HTMLElement implements IShadowModal {
         return style;
     }
 
-    public removeStyle(style: HTMLStyleElement) {
-        if (style instanceof HTMLStyleElement) {
-            const parent = style.parentNode;
-            if (parent !== null && this.shadow.isSameNode(parent)) {
-                this.shadow.removeChild(style);
-            }
-        }
-    }
-
     public addFooterBtn(text: string, classNames?: string | string[], callback?: (this: IShadowModal, ev: MouseEvent) => void) {
         const button = document.createElement('button');
         button.textContent = text;
@@ -70,15 +61,6 @@ abstract class AbstractShadowModal extends HTMLElement implements IShadowModal {
         }
         this.footer.appendChild(button);
         return button;
-    }
-
-    public removeFooterBtn(button: HTMLButtonElement) {
-        if (button instanceof HTMLButtonElement) {
-            const parent = button.parentNode;
-            if (parent !== null && this.footer.isSameNode(parent)) {
-                this.footer.removeChild(button);
-            }
-        }
     }
 
     public abstract set hasHeader(val: boolean);

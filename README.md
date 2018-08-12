@@ -1,4 +1,4 @@
-# ShadowModal - A bootstrap 4 modal within a customElements' shadow dom
+# ShadowModal
 
 ## Description
 
@@ -67,7 +67,7 @@ or
 
 ```javascript
 // bulma
-const modal = Bulma.create();
+const modal = ShadowModal.Bulma.create();
 let style = modal.addStyle('.custom-color { background-color: #34495e; }');
 
 modal.setTitle('A title');
@@ -91,7 +91,7 @@ document.body.appendChild(modal);
 modal.open();
 
 // uikit
-const modal = Uikit.create();
+const modal = ShadowModal.Uikit.create();
 let style = modal.addStyle('.custom-color { background-color: #34495e; }');
 
 modal.setTitle('A title');
