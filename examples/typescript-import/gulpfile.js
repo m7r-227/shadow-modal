@@ -11,7 +11,7 @@ gulp.task('default', function () {
     return browserify({ entries: ['./src/index.ts'] })
         .plugin(tsify)
         .bundle()
-        .pipe(source('my-userscript.js'))
+        .pipe(source('shadow-modal-bulma.user.js'))
         .pipe(buffer())
         .pipe(uglify())
         .pipe(header(fs.readFileSync('./headers.js')))

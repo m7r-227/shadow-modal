@@ -1,6 +1,6 @@
 import AbstractShadowModal from '../AbstractShadowModal';
 import UikitOptions from './UikitOptions';
-declare class Bulma extends AbstractShadowModal {
+declare class Uikit extends AbstractShadowModal {
     modal: HTMLDivElement;
     header: HTMLDivElement;
     modalTitle: HTMLHeadingElement;
@@ -11,6 +11,6 @@ declare class Bulma extends AbstractShadowModal {
     close(): void;
     hasHeader: boolean;
     hasFooter: any;
-    static create(o?: UikitOptions): Bulma;
+    static create(o?: UikitOptions): Uikit;
 }
-export default Bulma;
+export default Uikit;

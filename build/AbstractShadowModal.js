@@ -27,14 +27,6 @@ class AbstractShadowModal extends HTMLElement {
         this.shadow.appendChild(style);
         return style;
     }
-    removeStyle(style) {
-        if (style instanceof HTMLStyleElement) {
-            const parent = style.parentNode;
-            if (parent !== null && this.shadow.isSameNode(parent)) {
-                this.shadow.removeChild(style);
-            }
-        }
-    }
     addFooterBtn(text, classNames, callback) {
         const button = document.createElement('button');
         button.textContent = text;
@@ -54,14 +46,6 @@ class AbstractShadowModal extends HTMLElement {
         }
         this.footer.appendChild(button);
         return button;
-    }
-    removeFooterBtn(button) {
-        if (button instanceof HTMLButtonElement) {
-            const parent = button.parentNode;
-            if (parent !== null && this.footer.isSameNode(parent)) {
-                this.footer.removeChild(button);
-            }
-        }
     }
 }
 exports.default = AbstractShadowModal;

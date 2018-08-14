@@ -13,7 +13,7 @@ class Uikit extends AbstractShadowModal {
 
         const uikit = document.createElement('link');
         uikit.setAttribute('rel', 'stylesheet');
-        uikit.setAttribute('href', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.11/css/uikit.min.css');
+        uikit.setAttribute('href', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/css/uikit.min.css');
         this.shadow.appendChild(uikit);
 
         const template = document.createElement('template');

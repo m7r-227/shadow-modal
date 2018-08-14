@@ -1,18 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const AbstractShadowModal_1 = require("../AbstractShadowModal");
-class Bulma extends AbstractShadowModal_1.default {
+class Uikit extends AbstractShadowModal_1.default {
     constructor() {
         super();
         const uikit = document.createElement('link');
         uikit.setAttribute('rel', 'stylesheet');
-        uikit.setAttribute('href', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/css/uikit.min.css');
+        uikit.setAttribute('href', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/css/uikit.min.css');
         this.shadow.appendChild(uikit);
         const template = document.createElement('template');
         template.innerHTML = `
             <div class="uk-modal">
                 <div class="uk-modal-dialog">
-                    <button class="uk-modal-close-default uk-close uk-icon" type="button" data-close></button>
+                    <button class="uk-modal-close uk-close uk-icon" type="button" data-close></button>
                     <div class="uk-modal-header">
                         <h2 class="uk-modal-title"></h2>
                     </div>
@@ -31,12 +31,12 @@ class Bulma extends AbstractShadowModal_1.default {
         this.modal.addEventListener('click', (e) => {
             const target = e.target;
             if (target instanceof HTMLElement) {
-                console.log(target);
-                // if (this.background.isSameNode(target)) {
-                //     this.close();
-                // } else if (target.dataset.close !== undefined) {
-                //     this.close();
-                // }
+                if (this.modal.isSameNode(target)) {
+                    this.close();
+                }
+                else if (target.dataset.close !== undefined) {
+                    this.close();
+                }
             }
         });
         this.shadow.appendChild(this.modal);
@@ -101,5 +101,5 @@ class Bulma extends AbstractShadowModal_1.default {
         return modal;
     }
 }
-customElements.define('uikit-modal', Bulma);
-exports.default = Bulma;
+customElements.define('uikit-modal', Uikit);
+exports.default = Uikit;
